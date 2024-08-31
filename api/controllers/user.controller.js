@@ -133,70 +133,49 @@ export const getUser = async (req, res, next) => {
 };
 
 
-// Function to handle liking a game
-export const likeGame = async (req, res, next) => {
+// Get user votes
+export const getUserVotes = async (req, res) => {
   try {
-    const { userId, gameId } = req.params;
-    const user = await User.findById(userId);
-
-    if (!user) {
-      console.log("User not found");
-      return next(errorHandler(404, 'User not found'));
-    }
-
-    // Check if the game is already liked
-    if (user.likedGames.includes(gameId)) {
-      console.log("Game already liked");
-      return res.status(400).json({ message: 'Game already liked!' });
-    }
-
-    // Remove the game from dislikedGames if it exists there
-    if (user.dislikedGames.includes(gameId)) {
-      user.dislikedGames.pull(gameId);
-    }
-
-    // Add the game to the likedGames array
-    user.likedGames.push(gameId);
-    await user.save();
-
-    console.log("Game liked successfully!");
-    res.status(200).json({ message: 'Game liked successfully!', likedGames: user.likedGames });
+    const user = await User.findOne({ username: req.query.username });
+    if (!user) return res.status(404).json({ message: 'User not found' });
+    res.json(user.votes);
   } catch (error) {
-    console.log("Error in liking game:", error);
-    next(error);
+    res.status(500).json({ message: error.message });
   }
 };
 
-// Function to handle disliking a game
-export const dislikeGame = async (req, res, next) => {
+// Add or update user vote
+export const updateUserVote = async (req, res) => {
   try {
-    const { userId, gameId } = req.params;
-    const user = await User.findById(userId);
+    const { username, gameId, vote } = req.body;
+    const user = await User.findOne({ username });
+    if (!user) return res.status(404).json({ message: 'User not found' });
 
-    if (!user) {
-      console.log("User not found");
-      return next(errorHandler(404, 'User not found'));
+    const existingVoteIndex = user.votes.findIndex(v => v.gameId === gameId);
+    if (existingVoteIndex > -1) {
+      user.votes[existingVoteIndex].vote = vote;
+    } else {
+      user.votes.push({ gameId, vote });
     }
 
-    // Check if the game is already disliked
-    if (user.dislikedGames.includes(gameId)) {
-      console.log("Game already disliked");
-      return res.status(400).json({ message: 'Game already disliked!' });
-    }
-
-    // Remove the game from likedGames if it exists there
-    if (user.likedGames.includes(gameId)) {
-      user.likedGames.pull(gameId);
-    }
-
-    // Add the game to the dislikedGames array
-    user.dislikedGames.push(gameId);
     await user.save();
-
-    console.log("Game disliked successfully!");
-    res.status(200).json({ message: 'Game disliked successfully!', dislikedGames: user.dislikedGames });
+    res.json(user.votes);
   } catch (error) {
-    console.log("Error in disliking game:", error);
-    next(error);
+    res.status(500).json({ message: error.message });
+  }
+};
+
+// Remove user vote
+export const removeUserVote = async (req, res) => {
+  try {
+    const { username, gameId } = req.body;
+    const user = await User.findOne({ username });
+    if (!user) return res.status(404).json({ message: 'User not found' });
+
+    user.votes = user.votes.filter(v => v.gameId !== gameId);
+    await user.save();
+    res.json(user.votes);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
   }
 };

@@ -25,14 +25,11 @@ const userSchema = new mongoose.Schema(
       type: Boolean,
       default: false,
     },
-    likedGames: {
-      type: [String], // Array of game IDs (strings)
-      default: [],
-    },
-    dislikedGames: {
-      type: [String], // Array of game IDs (strings)
-      default: [],
-    },
+    votes: [{
+      gameId: { type: Number, required: true },
+      vote: { type: String, enum: ['liked', 'disliked'], required: true }
+    }],
+   
   },
   { timestamps: true }
 );

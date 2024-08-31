@@ -6,6 +6,10 @@ import {
   signout,
   test,
   updateUser,
+  getUserVotes,
+  updateUserVote,
+  removeUserVote
+ 
 } from '../controllers/user.controller.js';
 import { verifyToken } from '../utils/verifyUser.js';
 
@@ -17,7 +21,9 @@ router.delete('/delete/:userId', verifyToken, deleteUser);
 router.post('/signout', signout);
 router.get('/getusers', verifyToken, getUsers);
 router.get('/:userId', getUser);
-router.post('/:userId/like/:gameId', verifyToken, likeGame);   // Like a game
-router.post('/:userId/dislike/:gameId', verifyToken, dislikeGame); // Dislike a game
+router.get('/votes', getUserVotes);
+router.post('/votes', updateUserVote);
+router.delete('/votes', removeUserVote);
+
 
 export default router;

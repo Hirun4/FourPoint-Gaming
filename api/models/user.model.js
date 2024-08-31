@@ -25,6 +25,14 @@ const userSchema = new mongoose.Schema(
       type: Boolean,
       default: false,
     },
+    likedGames: {
+      type: [String], // Array of game IDs (strings)
+      default: [],
+    },
+    dislikedGames: {
+      type: [String], // Array of game IDs (strings)
+      default: [],
+    },
   },
   { timestamps: true }
 );

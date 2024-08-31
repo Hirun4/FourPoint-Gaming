@@ -17,5 +17,7 @@ router.delete('/delete/:userId', verifyToken, deleteUser);
 router.post('/signout', signout);
 router.get('/getusers', verifyToken, getUsers);
 router.get('/:userId', getUser);
+router.post('/:userId/like/:gameId', verifyToken, likeGame);   // Like a game
+router.post('/:userId/dislike/:gameId', verifyToken, dislikeGame); // Dislike a game
 
 export default router;

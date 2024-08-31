@@ -14,6 +14,7 @@ import UpdatePost from './pages/UpdatePost';
 import PostPage from './pages/PostPage';
 import ScrollToTop from './components/ScrollToTop';
 import Search from './pages/Search';
+import Events from './pages/Events';
 
 export default function App() {
   return (
@@ -35,6 +36,7 @@ export default function App() {
         </Route>
 
         <Route path='/Games' element={<Games />} />
+        <Route path='/events' element={<Events />} />
         <Route path='/post/:postSlug' element={<PostPage />} />
       </Routes>
       <Footer />

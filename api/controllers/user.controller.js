@@ -131,3 +131,72 @@ export const getUser = async (req, res, next) => {
     next(error);
   }
 };
+
+
+// Function to handle liking a game
+export const likeGame = async (req, res, next) => {
+  try {
+    const { userId, gameId } = req.params;
+    const user = await User.findById(userId);
+
+    if (!user) {
+      console.log("User not found");
+      return next(errorHandler(404, 'User not found'));
+    }
+
+    // Check if the game is already liked
+    if (user.likedGames.includes(gameId)) {
+      console.log("Game already liked");
+      return res.status(400).json({ message: 'Game already liked!' });
+    }
+
+    // Remove the game from dislikedGames if it exists there
+    if (user.dislikedGames.includes(gameId)) {
+      user.dislikedGames.pull(gameId);
+    }
+
+    // Add the game to the likedGames array
+    user.likedGames.push(gameId);
+    await user.save();
+
+    console.log("Game liked successfully!");
+    res.status(200).json({ message: 'Game liked successfully!', likedGames: user.likedGames });
+  } catch (error) {
+    console.log("Error in liking game:", error);
+    next(error);
+  }
+};
+
+// Function to handle disliking a game
+export const dislikeGame = async (req, res, next) => {
+  try {
+    const { userId, gameId } = req.params;
+    const user = await User.findById(userId);
+
+    if (!user) {
+      console.log("User not found");
+      return next(errorHandler(404, 'User not found'));
+    }
+
+    // Check if the game is already disliked
+    if (user.dislikedGames.includes(gameId)) {
+      console.log("Game already disliked");
+      return res.status(400).json({ message: 'Game already disliked!' });
+    }
+
+    // Remove the game from likedGames if it exists there
+    if (user.likedGames.includes(gameId)) {
+      user.likedGames.pull(gameId);
+    }
+
+    // Add the game to the dislikedGames array
+    user.dislikedGames.push(gameId);
+    await user.save();
+
+    console.log("Game disliked successfully!");
+    res.status(200).json({ message: 'Game disliked successfully!', dislikedGames: user.dislikedGames });
+  } catch (error) {
+    console.log("Error in disliking game:", error);
+    next(error);
+  }
+};

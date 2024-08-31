@@ -157,7 +157,7 @@ export default function Games() {
             className='mt-1 block w-full border border-gray-500 rounded-md'
             onChange={handleSortChange}
           >
-            <option className='block text-gray-500'value='Popularity'>Popularity</option>
+            
             <option className='block text-gray-500'value='Release Date'>Release Date</option>
           </select>
         </div>

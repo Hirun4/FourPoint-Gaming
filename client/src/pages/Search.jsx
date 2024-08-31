@@ -138,6 +138,7 @@ export default function Search() {
               <option value='Roguelike'>Roguelike</option>
               <option value='Shooter'>Shooter</option>
               <option value='RPG'>RPG</option>
+              <option value='Events'>Gaming Event</option>
             </Select>
           </div>
           <Button type='submit' outline gradientDuoTone='purpleToPink'>

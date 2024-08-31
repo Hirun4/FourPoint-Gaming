@@ -17,14 +17,14 @@ export default function Home() {
   return (
     <div>
       <div className='flex flex-col gap-6 p-28 px-3 max-w-6xl mx-auto '>
-        <h1 className='text-3xl font-bold lg:text-6xl'>Welcome to my Blog</h1>
-        <p className='text-gray-500 text-xs sm:text-sm'>
-          Here you'll find a variety of articles and tutorials on topics such as
-          web development, software engineering, and programming languages.
+        <h1 className='   text-6xl font-extrabold mb-8 text-center bg-gradient-to-r from-red-500 via-green-500 to-yellow-500 rounded-lg text-white py-4 animate-glow'>Welcome to FourPoint Gaming</h1>
+        <p className='text-gray-500 text-sm sm:text-sm font-bold'>
+        Explore our latest insights and tips on gaming trends, reviews, and strategies. Whether
+        you're a casual gamer or a hardcore enthusiast, we've got something for everyone.
         </p>
         <Link
           to='/search'
-          className='text-xs sm:text-sm text-teal-500 font-bold hover:underline'
+          className='px-2 py-1 bg-gradient-to-r from-orange-500 via-purple-500 to-pink-500 inline-block rounded-lg text-white text-center hover:animate-pulse'
         >
           View all posts
         </Link>
@@ -51,6 +51,7 @@ export default function Home() {
           </div>
         )}
       </div>
+   
     </div>
   );
 }

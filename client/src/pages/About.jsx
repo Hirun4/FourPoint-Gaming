@@ -3,29 +3,31 @@ export default function About() {
     <div className='min-h-screen flex items-center justify-center'>
       <div className='max-w-2xl mx-auto p-3 text-center'>
         <div>
-          <h1 className='text-3xl font font-semibold text-center my-7'>
-            About Sahand' Blog
+          <h1 className='text-4xl font-extrabold mb-8 text-center text-blue-600'>
+          About FourPoint gaming
           </h1>
-          <div className='text-md text-gray-500 flex flex-col gap-6'>
+          <div className='text-md  flex flex-col gap-6'>
             <p>
-              Welcome to Sahand's Blog! This blog was created by Sahand Ghavidel
-              as a personal project to share his thoughts and ideas with the
-              world. Sahand is a passionate developer who loves to write about
-              technology, coding, and everything in between.
+            Welcome to FourPoint! This platform was created to bring gamers
+            together and provide a space for them to discover, discuss, and
+            enjoy their favorite games. GameHub is the ultimate destination for
+            gamers who are passionate about all things gaming
             </p>
 
             <p>
-              On this blog, you'll find weekly articles and tutorials on topics
-              such as web development, software engineering, and programming
-              languages. Sahand is always learning and exploring new
-              technologies, so be sure to check back often for new content!
+            On FourPoint, you'll find the latest news, reviews, and updates on
+            popular games, as well as guides and tutorials to help you level up
+            your gameplay. Our goal is to keep you informed and engaged with
+            the gaming world by offering a wide range of content and community
+            features.
             </p>
 
             <p>
-              We encourage you to leave comments on our posts and engage with
-              other readers. You can like other people's comments and reply to
-              them as well. We believe that a community of learners can help
-              each other grow and improve.
+            We encourage you to join our community, share your thoughts, and
+            interact with fellow gamers. Whether you’re looking for game reviews,
+            tips, or just a place to connect with others who share your passion,
+            FourPoint is here for you. Dive in, explore, and let’s game on!
+            
             </p>
           </div>
         </div>

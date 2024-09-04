@@ -3,7 +3,7 @@ export default function About() {
     <div className='min-h-screen flex items-center justify-center'>
       <div className='max-w-2xl mx-auto p-3 text-center'>
         <div>
-          <h1 className='text-4xl font-extrabold mb-8 text-center text-blue-600'>
+          <h1 className='text-4xl font-extrabold mb-8 text-center animate-glow'>
           About FourPoint gaming
           </h1>
           <div className='text-md  flex flex-col gap-6'>

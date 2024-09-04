@@ -66,7 +66,7 @@ export default function Events() {
 
   return (
     <div className="max-w-7xl mx-auto p-6">
-      <h1 className="text-4xl font-extrabold mb-8 text-center text-blue-600">Upcoming Gaming Events</h1>
+      <h1 className="text-4xl font-extrabold mb-8 text-center  animate-glow">Upcoming Gaming Events</h1>
 
       <div className="flex justify-center items-center mb-10 space-x-16">
         <div className="text-center">

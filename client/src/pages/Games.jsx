@@ -125,7 +125,7 @@ export default function Games() {
 
   return (
     <div className='min-h-screen max-w-4xl mx-auto flex flex-col gap-6 p-4'>
-      <h1 className='text-4xl font-extrabold mb-8 text-center text-blue-600'>Top Games</h1>
+      <h1 className='text-4xl font-extrabold mb-8 text-center  animate-glow'>Top Games</h1>
       
       <div className='flex flex-col md:flex-row md:justify-between mb-6'>
         <div className='mb-4 md:mb-0'>

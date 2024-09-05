@@ -2,7 +2,7 @@ import { Button } from 'flowbite-react';
 
 export default function CallToAction() {
   return (
-    <div className='flex flex-col sm:flex-row p-3 border border-teal-500 justify-center items-center rounded-tl-3xl rounded-br-3xl text-center'>
+    <div className='flex flex-col sm:flex-row p-3 border border-red-500 justify-center items-center rounded-tl-3xl rounded-br-3xl text-center'>
         <div className="flex-1 justify-center flex flex-col">
             <h2 className='text-7xl font-extrabold gap-2'>
             Want to play with us?
@@ -10,7 +10,7 @@ export default function CallToAction() {
             <p className='text-gray-500 my-2 font-extrabold'>
             Join our DISCORD chanel 
             </p>
-            <Button gradientDuoTone='purpleToPink' className='rounded-tl-xl rounded-bl-none'>
+            <Button gradientDuoTone='pinkToOrange' className='rounded-tl-xl rounded-bl-none'>
                 <a href="https://discord.gg/f6eYn8dd" target='_blank' rel='noopener noreferrer'>
                 OUR DISCORD CHANEL
                 </a>

@@ -24,7 +24,7 @@ export default function Home() {
         </p>
         <Link
           to='/search'
-          className='px-2 py-1 bg-gradient-to-r from-orange-500 via-green-500 to-blue-500 inline-block rounded-lg text-white text-center hover:animate-pulse'
+          className='px-2 py-1 bg-gradient-to-r from-yellow-500 via-green-500 to-blue-500 inline-block rounded-lg text-white text-center hover:animate-pulse'
         >
           View all posts
         </Link>

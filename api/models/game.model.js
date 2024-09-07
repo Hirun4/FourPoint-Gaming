@@ -1,14 +1,14 @@
-import mongoose from 'mongoose';
+import mongoose from 'mongoose'; 
 
-const gameSchema = new mongoose.Schema({
-  id: { type: Number, required: true, unique: true },
+  const gameSchema = new mongoose.Schema({
   title: String,
   genre: String,
   popularity: Number,
-  releaseDate: Date,
+  releaseDate: String,
   likes: { type: Number, default: 0 },
   dislikes: { type: Number, default: 0 },
   officialSite: String
 });
 
-export default mongoose.model('Game', gameSchema);
+const Game = mongoose.model('Game', gameSchema);
+export default Game;

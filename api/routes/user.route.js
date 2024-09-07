@@ -6,14 +6,13 @@ import {
   signout,
   test,
   updateUser,
-  getUserVotes,
-  updateUserVote,
-  removeUserVote
+ getUserVotes,
  
 } from '../controllers/user.controller.js';
 import { verifyToken } from '../utils/verifyUser.js';
 
 const router = express.Router();
+
 
 router.get('/test', test);
 router.put('/update/:userId', verifyToken, updateUser);
@@ -22,8 +21,7 @@ router.post('/signout', signout);
 router.get('/getusers', verifyToken, getUsers);
 router.get('/:userId', getUser);
 router.get('/votes', getUserVotes);
-router.post('/votes', updateUserVote);
-router.delete('/votes', removeUserVote);
+
 
 
 export default router;

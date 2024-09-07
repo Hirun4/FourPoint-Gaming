@@ -6,6 +6,7 @@ import authRoutes from './routes/auth.route.js';
 import postRoutes from './routes/post.route.js';
 import commentRoutes from './routes/comment.route.js';
 import gameRoutes from './routes/game.route.js';
+
 import cookieParser from 'cookie-parser';
 import path from 'path';
 
@@ -35,7 +36,8 @@ app.use('/api/user', userRoutes);
 app.use('/api/auth', authRoutes);
 app.use('/api/post', postRoutes);
 app.use('/api/comment', commentRoutes);
-app.use('/api/games', gameRoutes);
+app.use('/api/game', gameRoutes);
+app.use('/api/user', userRoutes);
 
 app.use(express.static(path.join(__dirname, '/client/dist')));
 

@@ -38,7 +38,7 @@ export default function Games() {
       console.log('Attempting to like game with ID ${id}');
     if (userVotes[id] === 'liked') {
       // Remove the like if it's already liked
-      await fetch(`/api/games/${id}/like`, { method: 'DELETE' });
+      await fetch(`/api/game/${id}/like`, { method: 'DELETE' });
       setGames(games.map(game =>
         game.id === id ? { ...game, likes: game.likes - 1 } : game
       ));
@@ -55,7 +55,7 @@ export default function Games() {
         return;
       }
 
-      await fetch(`/api/games/${id}/like`, { method: 'POST' });
+      await fetch(`/api/game/${id}/like`, { method: 'POST' });
       setGames(games.map(game =>
         game.id === id ? { ...game, likes: game.likes + 1 } : game
       ));
@@ -74,7 +74,7 @@ export default function Games() {
   const handleDislike = async (id) => {
     if (userVotes[id] === 'disliked') {
       // Remove the dislike if it's already disliked
-      await fetch(`/api/games/${id}/dislike`, { method: 'DELETE' });
+      await fetch(`/api/game/${id}/dislike`, { method: 'DELETE' });
       setGames(games.map(game =>
         game.id === id ? { ...game, dislikes: game.dislikes - 1 } : game
       ));
@@ -91,7 +91,7 @@ export default function Games() {
         return;
       }
 
-      await fetch(`/api/games/${id}/dislike`, { method: 'POST' });
+      await fetch(`/api/game/${id}/dislike`, { method: 'POST' });
       setGames(games.map(game =>
         game.id === id ? { ...game, dislikes: game.dislikes + 1 } : game
       ));

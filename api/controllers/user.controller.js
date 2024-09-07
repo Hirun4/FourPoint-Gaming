@@ -133,49 +133,20 @@ export const getUser = async (req, res, next) => {
 };
 
 
+
+
 // Get user votes
 export const getUserVotes = async (req, res) => {
   try {
-    const user = await User.findOne({ username: req.query.username });
+    const userId = req.query.userId;
+    const user = await User.findById(userId);
+
     if (!user) return res.status(404).json({ message: 'User not found' });
-    res.json(user.votes);
+
+    res.status(200).json(user.votes);
   } catch (error) {
-    res.status(500).json({ message: error.message });
+    res.status(500).json({ message: 'Error fetching user votes', error });
   }
 };
 
-// Add or update user vote
-export const updateUserVote = async (req, res) => {
-  try {
-    const { username, gameId, vote } = req.body;
-    const user = await User.findOne({ username });
-    if (!user) return res.status(404).json({ message: 'User not found' });
-
-    const existingVoteIndex = user.votes.findIndex(v => v.gameId === gameId);
-    if (existingVoteIndex > -1) {
-      user.votes[existingVoteIndex].vote = vote;
-    } else {
-      user.votes.push({ gameId, vote });
-    }
-
-    await user.save();
-    res.json(user.votes);
-  } catch (error) {
-    res.status(500).json({ message: error.message });
-  }
-};
-
-// Remove user vote
-export const removeUserVote = async (req, res) => {
-  try {
-    const { username, gameId } = req.body;
-    const user = await User.findOne({ username });
-    if (!user) return res.status(404).json({ message: 'User not found' });
-
-    user.votes = user.votes.filter(v => v.gameId !== gameId);
-    await user.save();
-    res.json(user.votes);
-  } catch (error) {
-    res.status(500).json({ message: error.message });
-  }
-};
+// module.exports = { getUserVotes };

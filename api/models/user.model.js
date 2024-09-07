@@ -25,10 +25,11 @@ const userSchema = new mongoose.Schema(
       type: Boolean,
       default: false,
     },
-    votes: [{
-      gameId: { type: Number, required: true },
-      vote: { type: String, enum: ['liked', 'disliked'], required: true }
-    }],
+    votes: {
+      // Game ID as key, vote as value ('liked' or 'disliked')
+      type: Map,
+      of: String
+    }
    
   },
   { timestamps: true }

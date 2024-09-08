@@ -125,7 +125,7 @@ export default function Games() {
 
   return (
     <div className='min-h-screen  mx-auto flex flex-col gap-6 p-4 bg-slate-700 dark:bg-slate-700'>
-      <h1 className='text-5xl font-extrabold mb-8 text-center  animate-glow text-white'>Top Games</h1>
+      <h1 className='text-5xl font-extrabold mb-8 text-center  animate-glow text-white'>Game Ratings</h1>
       
       <div className='flex flex-col md:flex-row md:justify-between mb-6'>
         <div className='mb-4 md:mb-0'>

@@ -58,13 +58,13 @@ export default function PostPage() {
       </div>
     );
   return (
-    <main className='p-3 flex flex-col max-w-6xl mx-auto min-h-screen'>
-      <h1 className='text-3xl mt-10 p-3 text-center font-serif max-w-2xl mx-auto lg:text-4xl'>
+    <main className='p-3 flex flex-col  mx-auto min-h-screen bg-slate-700 '>
+      <h1 className='text-3xl mt-10 p-3 text-center font-serif max-w-2xl mx-auto lg:text-4xl text-white'>
         {post && post.title}
       </h1>
       <Link
         to={`/search?category=${post && post.category}`}
-        className='self-center mt-5'
+        className='self-center mt-5 text-white'
       >
         <Button color='gray' pill size='xs'>
           {post && post.category}
@@ -75,21 +75,21 @@ export default function PostPage() {
         alt={post && post.title}
         className='mt-10 p-3 max-h-[600px] w-full object-cover'
       />
-      <div className='flex justify-between p-3 border-b border-slate-500 mx-auto w-full max-w-2xl text-xs'>
+      <div className='flex justify-between p-3 border-b border-slate-500 mx-auto w-full max-w-2xl text-xs text-white'>
         <span>{post && new Date(post.createdAt).toLocaleDateString()}</span>
         <span className='italic'>
           {post && (post.content.length / 1000).toFixed(0)} mins read
         </span>
       </div>
       <div
-        className='p-3 max-w-2xl mx-auto w-full post-content'
+        className='p-3 max-w-2xl mx-auto w-full post-content text-white'
         dangerouslySetInnerHTML={{ __html: post && post.content }}
       ></div>
      
       <CommentSection postId={post._id} />
 
       <div className='flex flex-col justify-center items-center mb-5'>
-        <h1 className='text-xl mt-5'>Recent articles</h1>
+        <h1 className='text-xl mt-5 text-white'>Recent articles</h1>
         <div className='flex flex-wrap gap-5 mt-5 justify-center'>
           {recentPosts &&
             recentPosts.map((post) => <PostCard key={post._id} post={post} />)}

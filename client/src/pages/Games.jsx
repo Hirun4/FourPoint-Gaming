@@ -163,13 +163,13 @@ export default function Games() {
         </div>
       </div>
 
-      <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6'>
+      <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 '>
         {sortedGames.map(game => (
-          <div key={game.id} className='bg-gray-100 p-4 rounded-lg shadow-md flex flex-col'>
-            <h2 className='text-xl font-semibold text-gray-800'>{game.title}</h2>
-            <p className='text-gray-600'>Genre: {game.genre}</p>
-            <p className='text-gray-600'>Popularity: {game.popularity}</p>
-            <p className='text-gray-600'>Release Date: {new Date(game.releaseDate).toLocaleDateString()}</p>
+          <div key={game.id} className='bg-slate-900 p-4 rounded-lg shadow-md flex flex-col hover:shadow-pink-500/50 ease-in-out '>
+            <h2 className='text-xl font-bold text-white'>{game.title}</h2>
+            <p className='text-white'>Genre: {game.genre}</p>
+            <p className='text-white'>Popularity: {game.popularity}</p>
+            <p className='text-white'>Release Date: {new Date(game.releaseDate).toLocaleDateString()}</p>
             <div className='flex flex-col gap-2 mt-4'>
               <div className='flex justify-between'>
                 <button 

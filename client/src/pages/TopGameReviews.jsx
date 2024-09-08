@@ -105,13 +105,13 @@ const topGames = [
 
 const TopGameReviews = () => {
   return (
-    <div className="bg-gray-900 text-white py-12 px-6">
+    <div className="bg-gray-800 text-white py-12 px-6">
       <h1 className="text-5xl font-extrabold text-center mb-12 animate-glow">Top Game Reviews</h1>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
         {topGames.map((game, index) => (
           <div
             key={index}
-            className="bg-gray-800 p-6 rounded-lg shadow-lg transition transform hover:scale-105 hover:shadow-2xl"
+            className="bg-gray-900 p-6 rounded-lg shadow-lg transition transform hover:scale-105 hover:shadow-2xl"
           >
             <a href={game.image} target="_blank" rel="noopener noreferrer">
               <img

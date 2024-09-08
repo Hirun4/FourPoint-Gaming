@@ -49,15 +49,13 @@ export default function Header() {
   };
 
   return (
-    <Navbar className='border-b-2 bg-cyan-100 '>
+    <Navbar className='bg-slate-700 border-b-2 text-white'>
       <Link
         to='/'
-        className='self-center whitespace-nowrap text-sm sm:text-xl font-semibold dark:text-white'
+        className='self-center whitespace-nowrap text-sm sm:text-xl font-semibold dark:text-white '
       >
         <span className='px-2 py-1 bg-gradient-to-r from-red-500 via-green-500 to-blue-500 rounded-lg text-white animate-glow'>
           FourPoint gaming
-        {/* </span> */}
-        
         </span>
       </Link>
       <form onSubmit={handleSubmit}>
@@ -91,8 +89,8 @@ export default function Header() {
             }
           >
             <Dropdown.Header>
-              <span className='block text-sm'>@{currentUser.username}</span>
-              <span className='block text-sm font-medium truncate'>
+              <span className='block text-sm '>@{currentUser.username}</span>
+              <span className='block text-sm font-medium truncate '>
                 {currentUser.email}
               </span>
             </Dropdown.Header>
@@ -111,21 +109,27 @@ export default function Header() {
         )}
         <Navbar.Toggle />
       </div>
+      
       <Navbar.Collapse>
         <Navbar.Link active={path === '/'} as={'div'}>
-          <Link to='/'>Home</Link>
+          <Link to='/' className='text-white'>Home</Link>
         </Navbar.Link>
         
         <Navbar.Link active={path === '/Games'} as={'div'}>
-          <Link to='/Games'>Games</Link>
+          <Link to='/Games' className='text-white'>Games</Link>
         </Navbar.Link>
         <Navbar.Link active={path === '/events'} as={'div'}>
-          <Link to='/events'>Events</Link>
-          </Navbar.Link>
-          <Navbar.Link active={path === '/about'} as={'div'}>
-          <Link to='/about'>About</Link>
+          <Link to='/events' className='text-white'>Events</Link>
         </Navbar.Link>
+        <Navbar.Link active={path === '/TopGameReviews'} as={'div'}>
+          <Link to='/TopGameReviews' className='text-white'>Top Game Reviews</Link>
+        </Navbar.Link>
+        <Navbar.Link active={path === '/about'} as={'div'}>
+          <Link to='/about' className='text-white'>About</Link>
+        </Navbar.Link>
+        
       </Navbar.Collapse>
+      
     </Navbar>
   );
 }

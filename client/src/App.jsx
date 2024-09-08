@@ -15,6 +15,7 @@ import PostPage from './pages/PostPage';
 import ScrollToTop from './components/ScrollToTop';
 import Search from './pages/Search';
 import Events from './pages/Events';
+import TopGameReviews from './pages/TopGameReviews';
 
 export default function App() {
   return (
@@ -37,6 +38,7 @@ export default function App() {
 
         <Route path='/Games' element={<Games />} />
         <Route path='/events' element={<Events />} />
+        <Route path='/TopGameReviews' element={<TopGameReviews />} />
         <Route path='/post/:postSlug' element={<PostPage />} />
       </Routes>
       <Footer />

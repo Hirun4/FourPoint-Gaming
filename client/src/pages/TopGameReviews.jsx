@@ -122,14 +122,7 @@ const TopGameReviews = () => {
             </a>
             <h2 className="text-2xl font-bold mb-2">{game.name}</h2>
             <p className="text-gray-400 mb-4">{game.description}</p>
-            {/* <a
-              href={game.image}
-              className="text-green-500 hover:text-green-300 transition-colors"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Read More
-            </a> */}
+           
           </div>
         ))}
       </div>

@@ -120,7 +120,7 @@ export default function Events() {
     d1.getFullYear() === d2.getFullYear();
 
   return (
-    <div className="container mx-auto p-6 bg-gradient-to-r from-slate-800 to-gray-900 text-white min-h-screen">
+    <div className="container mx-auto p-6 bg-gradient-to-r from-slate-800 to-gray-900 text-white min-h-screen overflow-hidden">
       
       <h1 className="text-5xl font-extrabold mb-8 text-center text-white bg-clip-text bg-gradient-to-r from-purple-400 via-pink-500 to-red-500 animate-glow">
         Upcoming Gaming Events

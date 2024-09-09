@@ -116,7 +116,7 @@ export default function Header() {
         </Navbar.Link>
         
         <Navbar.Link active={path === '/Games'} as={'div'}>
-          <Link to='/Games' className='text-white'>Games</Link>
+          <Link to='/Games' className='text-white'>Ratings</Link>
         </Navbar.Link>
         <Navbar.Link active={path === '/events'} as={'div'}>
           <Link to='/events' className='text-white'>Events</Link>

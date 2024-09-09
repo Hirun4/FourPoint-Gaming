@@ -1,15 +1,15 @@
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import Calendar from 'react-calendar';
-import 'react-calendar/dist/Calendar.css'; // Import calendar styles
-import { FaFlag } from 'react-icons/fa'; // Import flag icon for excluded countries
+import 'react-calendar/dist/Calendar.css'; 
+import { FaFlag } from 'react-icons/fa'; 
 
 export default function Events() {
   const [events, setEvents] = useState([]);
   const [date, setDate] = useState(new Date());
 
   useEffect(() => {
-    // Simulated data for example purposes
+    
     const simulatedEvents = [
       {
         id: 1,
@@ -120,13 +120,13 @@ export default function Events() {
     d1.getFullYear() === d2.getFullYear();
 
   return (
-    <div className="container mx-auto p-6 bg-gradient-to-r from-slate-800 to-gray-900 text-white min-h-screen">
-      {/* Header */}
+    <div className="container mx-auto p-6 bg-gradient-to-r from-slate-800 to-gray-900 text-white min-h-screen overflow-hidden">
+      
       <h1 className="text-5xl font-extrabold mb-8 text-center text-white bg-clip-text bg-gradient-to-r from-purple-400 via-pink-500 to-red-500 animate-glow">
         Upcoming Gaming Events
       </h1>
 
-      {/* Clock and Calendar Section */}
+      
       <div className="flex justify-center items-center mb-10 space-x-16">
         <div className="text-center">
           <div id="clock" className="text-6xl font-extrabold text-yellow-400 drop-shadow-md"></div>
@@ -149,7 +149,7 @@ export default function Events() {
         </div>
       </div>
 
-      {/* Upcoming Events Section */}
+      
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10">
         {events.length > 0 ? (
           events.map((event) => (
@@ -198,7 +198,7 @@ export default function Events() {
         )}
       </div>
 
-      {/* Past Event Highlights Section */}
+      
       <div className="mt-16">
         <h2 className="text-4xl font-extrabold mb-6 text-center text-white bg-clip-text bg-gradient-to-r from-teal-400 to-blue-500 animate-pulse">
           Past Event Highlights
@@ -237,7 +237,7 @@ export default function Events() {
               View Highlights →
             </Link>
           </div>
-          {/* Add more past events */}
+          
         </div>
       </div>
     </div>

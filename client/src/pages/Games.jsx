@@ -136,17 +136,17 @@ export default function Games() {
             value={filter}
             onChange={handleFilterChange}
           >
-            <option className='block text-gray-500' value='All'>All</option>
-            <option className='block text-gray-500'value='Adventure'>Adventure</option>
-            <option className='block text-gray-500'value='Shooter'>Shooter</option>
-            <option className='block text-gray-500'value='Sandbox'>Sandbox</option>
-            <option className='block text-gray-500'value='Sports'>Sports</option>
-            <option className='block text-gray-500'value='Action'>Action</option>
-            <option className='block text-gray-500'value='Roguelike'>Roguelike</option>
-            <option className='block text-gray-500'value='Social Deduction'>Social Deduction</option>
-            <option className='block text-gray-500'value='FPS'>FPS</option>
-            <option className='block text-gray-500'value='RPG'>RPG</option>
-            <option className='block text-gray-500'value='Battle Royale'>Battle Royale</option>
+            <option className='block text-gray-400' value='All'>All</option>
+            <option className='block text-gray-400'value='Adventure'>Adventure</option>
+            <option className='block text-gray-400'value='Shooter'>Shooter</option>
+            <option className='block text-gray-400'value='Sandbox'>Sandbox</option>
+            <option className='block text-gray-400'value='Sports'>Sports</option>
+            <option className='block text-gray-400'value='Action'>Action</option>
+            <option className='block text-gray-400'value='Roguelike'>Roguelike</option>
+            <option className='block text-gray-400'value='Social Deduction'>Social Deduction</option>
+            <option className='block text-gray-400'value='FPS'>FPS</option>
+            <option className='block text-gray-400'value='RPG'>RPG</option>
+            <option className='block text-gray-400'value='Battle Royale'>Battle Royale</option>
           </select>
         </div>
 

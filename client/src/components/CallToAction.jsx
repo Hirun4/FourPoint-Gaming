@@ -26,7 +26,7 @@ export default function CallToAction() {
       
       <div className='p-6 flex-1 relative'>
         <img
-          src='https://files.oaiusercontent.com/file-87aAPSY7eCgSpYKQE3KcpzP5?se=2024-09-07T23%3A43%3A45Z&sp=r&sv=2024-08-04&sr=b&rscc=max-age%3D604800%2C%20immutable%2C%20private&rscd=attachment%3B%20filename%3Dee374a87-804e-4fde-84a1-aebfe2fd5061.webp&sig=RfXomSVm0s8%2BmhVDJRH5%2BWQ%2BI%2BUbolwcyq5MhVnrLGA%3D'
+          src='https://files.oaiusercontent.com/file-cn0GzdSCk74G0hIutQqexXtI?se=2024-10-22T16%3A07%3A33Z&sp=r&sv=2024-08-04&sr=b&rscc=max-age%3D604800%2C%20immutable%2C%20private&rscd=attachment%3B%20filename%3D72257040-ff39-47e7-abb5-579563c5fa2d.webp&sig=WS1ELPQjs5LVX4/UpxsLc1Fr25BfXgIs8%2B7iOS85v3E%3D'
           alt='Gaming Action'
           className='rounded-xl shadow-lg border-4 border-blue-500 transform  transition-transform duration-300'
         />

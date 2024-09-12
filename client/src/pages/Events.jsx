@@ -18,7 +18,7 @@ export default function Events() {
         details: 'Join the top players in SriLanka for a thrilling championship.',
         imageUrl: 'https://firebasestorage.googleapis.com/v0/b/fourpoint-db442.appspot.com/o/1725292869496post.png?alt=media&token=2c3f3cd2-8e4d-4f71-ad49-bd4117e6caa6',
         prizePool: [
-          { place: '1st', prize: '$10,000' },
+          { place: '1st', prize: '$8,000' },
           { place: '2nd', prize: '$5,000' },
           { place: '3rd', prize: '$2,500' },
         ],

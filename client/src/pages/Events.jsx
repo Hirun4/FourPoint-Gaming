@@ -31,7 +31,7 @@ export default function Events() {
         details: 'best prctice',
         imageUrl: 'https://www.rocketleague.com/_next/image?url=https%3A%2F%2Fmedia.graphassets.com%2Fresize%3Dfit%3Aclip%2Cheight%3A1080%2Cwidth%3A1920%2Foutput%3Dformat%3Awebp%2FLCntpcKSRcOOnPvUXvWU&w=3840&q=75',
         prizePool: [
-          { place: '1st', prize: '$7,000' },
+          { place: '1st', prize: '$6,000' },
           { place: '2nd', prize: '$3,500' },
           { place: '3rd', prize: '$1,500' },
         ],

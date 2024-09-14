@@ -189,7 +189,7 @@ export default function Events() {
                 to={`/event/${event.id}`}
                 className="inline-block mt-4 text-indigo-400 font-semibold hover:text-indigo-300 transition duration-300 ease-in-out"
               >
-                Registration opens one week before the event →
+                Registration opens two week before the event →
               </Link>
             </div>
           ))

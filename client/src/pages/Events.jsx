@@ -100,7 +100,7 @@ export default function Events() {
           { place: '2nd', prize: '$1,500' },
           { place: '3rd', prize: '$750' },
         ],
-        excludedCountries: ['Bangladesh', 'philipine', 'brazil'],
+        excludedCountries: ['Bangladesh', 'philipine', 'kenya'],
       },
     ];
     setEvents(simulatedEvents);

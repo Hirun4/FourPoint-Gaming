@@ -105,7 +105,7 @@ export default function CreatePost() {
             <option value='uncategorized'>Select a category</option>
             <option value='Open world'>Open world</option>
             <option value='Adventure'>Adventure</option>
-            <option value='Sandbox'>Sandbox</option>
+            <option value='Sandbox'>SandBox</option>
             <option value='Action'>Action</option>
             <option value='Roguelike'>Roguelike</option>
             <option value='Shooter'>Shooter</option>

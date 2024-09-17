@@ -102,6 +102,10 @@ export default function Events() {
         ],
         excludedCountries: ['Bangladesh', 'philipine', 'kenya'],
       },
+      {
+        id:8,
+
+      },
     ];
     setEvents(simulatedEvents);
   }, []);

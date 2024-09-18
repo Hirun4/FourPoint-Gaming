@@ -104,6 +104,7 @@ export default function Events() {
       },
       {
         id:8,
+        name: 'Online Game Party'
 
       },
     ];

@@ -106,6 +106,7 @@ export default function Events() {
         id:8,
         name: 'Online Game Party',
         date: 'April 20, 2025',
+        details: 'Discussion about Game experiences'
 
       },
     ];

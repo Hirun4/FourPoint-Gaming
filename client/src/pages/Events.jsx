@@ -109,7 +109,8 @@ export default function Events() {
         details: 'Discussion about Game experiences and small games',
         imageUrl: '',
         prizePool: [
-          {place: '1st', prize: }
+          { place: '1st', prize: '$1,000'},
+          {}
         ]
 
       },

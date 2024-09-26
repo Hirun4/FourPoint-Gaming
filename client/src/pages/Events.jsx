@@ -110,7 +110,7 @@ export default function Events() {
         imageUrl: '',
         prizePool: [
           { place: '1st', prize: '$1,000'},
-          { place: '1st',}
+          { place: '1st', prize: '$500'},
         ]
 
       },

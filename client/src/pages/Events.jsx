@@ -111,7 +111,7 @@ export default function Events() {
         prizePool: [
           { place: '1st', prize: '$1,000'},
           { place: '2nd', prize: '$500'},
-          { place: '3rd', }
+          { place: '3rd', prize: '$200' },
 
         ]
 

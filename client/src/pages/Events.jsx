@@ -113,7 +113,8 @@ export default function Events() {
           { place: '2nd', prize: '$500'},
           { place: '3rd', prize: '$200' },
 
-        ]
+        ],
+        excludedCountries: []
 
       },
     ];

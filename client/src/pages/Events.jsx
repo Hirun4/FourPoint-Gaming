@@ -114,7 +114,7 @@ export default function Events() {
           { place: '3rd', prize: '$200' },
 
         ],
-        excludedCountries: []
+        excludedCountries: ['Bangladesh',]
 
       },
     ];

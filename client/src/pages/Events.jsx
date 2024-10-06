@@ -107,7 +107,7 @@ export default function Events() {
         name: 'Online Game Party',
         date: 'April 20, 2025',
         details: 'Discussion about Game experiences and small games',
-        imageUrl: '',
+        imageUrl: 'https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.gamesradar.com%2Fbest-party-games%2F&psig=AOvVaw2-l9FVexziF3IilykfxcSd&ust=1732021376724000&source=images&cd=vfe&opi=89978449&ved=0CBMQjRxqFwoTCOD15NT45YkDFQAAAAAdAAAAABAE',
         prizePool: [
           { place: '1st', prize: '$1,000'},
           { place: '2nd', prize: '$500'},

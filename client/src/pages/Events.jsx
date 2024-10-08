@@ -107,7 +107,7 @@ export default function Events() {
         name: 'Online Game Party',
         date: 'April 20, 2025',
         details: 'Discussion about Game experiences and small games',
-        imageUrl: '',
+        imageUrl: 'https://cdn.mos.cms.futurecdn.net/rVCoiAs5FhDmtriWtta9PM-1200-80.jpg',
         prizePool: [
           { place: '1st', prize: '$1,000'},
           { place: '2nd', prize: '$500'},

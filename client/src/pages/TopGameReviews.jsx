@@ -103,7 +103,7 @@ const topGames = [
   },
   {
     name: 'GTA V',
-
+    image: '',
   },
 ];
 

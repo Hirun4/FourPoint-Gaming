@@ -104,6 +104,7 @@ const topGames = [
   {
     name: 'GTA V',
     image: 'https://images.ctfassets.net/wn7ipiv9ue5v/3yVDlCOrJnXMrb0yS4ea0y/ff2ba91de136504ac791401516d5053b/GTAV_Gen9_MFT_Webstore_Hero_3840x2160_DELIV.jpg',
+    description: 'Grand Theft Auto V is a 2013 action-adventure game developed by Rockstar North and published by Rockstar Games. It is the seventh main entry in the Grand Theft Auto series, following 2008 Grand Theft Auto IV, and the fifteenth instalment overall. ',
   },
 ];
 

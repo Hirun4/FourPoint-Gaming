@@ -103,7 +103,7 @@ const topGames = [
   },
   {
     name: 'GTA V',
-    image: '',
+    image: 'https://images.ctfassets.net/wn7ipiv9ue5v/3yVDlCOrJnXMrb0yS4ea0y/ff2ba91de136504ac791401516d5053b/GTAV_Gen9_MFT_Webstore_Hero_3840x2160_DELIV.jpg',
   },
 ];
 

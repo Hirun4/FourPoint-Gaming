@@ -243,6 +243,17 @@ export default function DashProfile() {
             </Button>
           </Link>
         )}
+        {currentUser.isAdmin && (
+          <Link to={'/admingames'}>
+            <Button
+              type='button'
+              gradientDuoTone='purpleToPink'
+              className='w-full'
+            >
+              add game
+            </Button>
+          </Link>
+        )}
       </form>
       <div className='text-red-500 flex justify-between mt-5'>
         <span onClick={() => setShowModal(true)} className='cursor-pointer'>

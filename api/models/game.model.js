@@ -14,7 +14,7 @@ const gameSchema = new mongoose.Schema({
       type: { type: String, enum: ['like', 'dislike'], required: true }
     }
   ],
-  userId: { type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true },
+  // userId: { type: mongoose.Schema.Types.ObjectId,  required: true },
 }, 
 // { timestamps: true }
 );

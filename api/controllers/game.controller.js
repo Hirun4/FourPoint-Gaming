@@ -1,7 +1,7 @@
 import Game from '../models/game.model.js';
 import { errorHandler } from '../utils/error.js';
 
-// Create a new game (Admin only)
+
 export const createGame = async (req, res, next) => {
   if (!req.user.isAdmin) {
     return next(errorHandler(403, 'Only admins can create a game'));
@@ -11,10 +11,10 @@ export const createGame = async (req, res, next) => {
     return next(errorHandler(400, 'Please provide all required fields'));
   }
 
-  // Handle uploaded image (if any)
+ 
   let imagePath = null;
   if (req.file) {
-    imagePath = `/uploads/${req.file.filename}`; // Save the uploaded image path
+    imagePath = `/uploads/${req.file.filename}`; 
   }
   console.log('Received Game Data:', req.body);
   console.log('Received File:', req.file);
@@ -22,8 +22,8 @@ export const createGame = async (req, res, next) => {
   try {
     const newGame = new Game({
       ...req.body,
-      image: imagePath, // Include the image path in the new game entry
-      userId: req.user.id, // Assume user ID is in req.user.id (from authentication)
+      image: imagePath, 
+      userId: req.user.id, 
     });
     console.log("Authenticated user ID:", req.user.id);
     console.log('Game object before saving:', newGame);

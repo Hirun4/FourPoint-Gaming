@@ -1,4 +1,5 @@
 import { Button } from 'flowbite-react';
+import logo from '../assets/1.png'
 
 export default function CallToAction() {
   return (
@@ -26,7 +27,7 @@ export default function CallToAction() {
       
       <div className='p-6 flex-1 relative'>
         <img
-          src='https://files.oaiusercontent.com/file-2ZrCFIKYwPXGAqwwzi1ZHor0?se=2024-11-18T13%3A38%3A20Z&sp=r&sv=2024-08-04&sr=b&rscc=max-age%3D604800%2C%20immutable%2C%20private&rscd=attachment%3B%20filename%3De89b58d0-ba38-41a3-b1e4-733f4ee2917f.webp&sig=1dC7gqjk37HqokPQBJRkV5iZxw/TJCkhbduv7rQMdQE%3D'
+          src={logo}
           alt='Gaming Action'
           className='rounded-xl shadow-lg border-4 border-blue-500 transform  transition-transform duration-300'
         />

@@ -1,4 +1,5 @@
 {
+  "homepage": "https://Hirun4.github.io/FourPoint-Gaming",
   "name": "mern-blog",
   "version": "1.0.0",
   "description": "",
@@ -6,7 +7,9 @@
   "main": "index.js",
   "scripts": {
     "dev": "nodemon api/index.js",
-    "start": "node api/index.js",
+    "start": "nodemon index.js",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build",
     "build": "npm install && npm install --prefix client && npm run build --prefix client"
   },
   "keywords": [],
@@ -20,5 +23,8 @@
     "jsonwebtoken": "^9.0.2",
     "mongoose": "^8.0.2",
     "nodemon": "^3.0.2"
+  },
+  "devDependencies": {
+    "gh-pages": "^6.2.0"
   }
 }

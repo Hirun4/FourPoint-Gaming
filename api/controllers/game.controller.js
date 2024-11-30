@@ -11,8 +11,18 @@ export const createGame = async (req, res, next) => {
     return next(errorHandler(400, 'Please provide all required fields'));
   }
 
+  // Handle uploaded image (if any)
+  let imagePath = null;
+  if (req.file) {
+    imagePath = `/uploads/${req.file.filename}`; // Save the uploaded image path
+  }
+
   try {
-    const newGame = new Game({ ...req.body, userId: req.user.id });
+    const newGame = new Game({
+      ...req.body,
+      image: imagePath, // Include the image path in the new game entry
+      userId: req.user.id, // Assume user ID is in req.user.id (from authentication)
+    });
     const savedGame = await newGame.save();
     res.status(201).json(savedGame);
   } catch (error) {
@@ -79,18 +89,39 @@ export const vote = async (req, res, next) => {
 
     // Check if the user has already voted
     const existingVote = game.votes.find((vote) => vote.userId.toString() === userId);
+
     if (existingVote) {
-      return res.status(400).json({ message: 'You have already voted for this game' });
-    }
+      if (existingVote.type === type) {
+        // If user clicks the same button again, remove their vote
+        game.votes = game.votes.filter((vote) => vote.userId.toString() !== userId);
 
-    // Add the new vote
-    game.votes.push({ userId, type });
+        // Adjust like/dislike counts accordingly
+        if (type === 'like') {
+          game.likes -= 1;
+        } else if (type === 'dislike') {
+          game.dislikes -= 1;
+        }
+      } else {
+        // If the user clicks the opposite button (like to dislike or vice versa), update their vote
+        existingVote.type = type;
 
-    // Update the like/dislike counts based on the vote
-    if (type === 'like') {
-      game.likes += 1;
-    } else if (type === 'dislike') {
-      game.dislikes += 1;
+        // Adjust like/dislike counts accordingly
+        if (type === 'like') {
+          game.likes += 1;
+          game.dislikes -= 1;
+        } else if (type === 'dislike') {
+          game.dislikes += 1;
+          game.likes -= 1;
+        }
+      }
+    } else {
+      // If no vote exists, create a new vote
+      game.votes.push({ userId, type });
+      if (type === 'like') {
+        game.likes += 1;
+      } else if (type === 'dislike') {
+        game.dislikes += 1;
+      }
     }
 
     // Save the updated game

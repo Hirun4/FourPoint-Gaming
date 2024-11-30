@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import { ThumbUpIcon, ThumbDownIcon } from '@heroicons/react/outline'; // Heroicons v2
+import { ThumbUpIcon, ThumbDownIcon } from '@heroicons/react/solid'; // Use icons for a more professional look
 
 export default function GamesList() {
   const [games, setGames] = useState([]);
-  const [userVote, setUserVote] = useState({}); // Track user's vote on each game
+  const [userVotes, setUserVotes] = useState({}); // To track user's vote for each game
 
   const fetchGames = async () => {
     const response = await fetch('/api/game');
@@ -11,31 +11,28 @@ export default function GamesList() {
     setGames(data);
   };
 
-  const fetchUserVote = async (gameId) => {
-    // Fetch user's vote status for the game
-    const response = await fetch(`/api/game/vote/status/${gameId}`, {
-      method: 'GET',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-    });
-    const data = await response.json();
-    setUserVote(prevState => ({ ...prevState, [gameId]: data.type }));
-  };
-
   const handleVote = async (id, type) => {
-    // If the user has already voted, do not allow further voting
-    if (userVote[id]) return;
-
     const response = await fetch(`/api/game/vote/${id}`, {
       method: 'PUT',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ type }),
     });
 
-    const data = await response.json();
-    setGames(games.map(game => (game._id === id ? data : game))); // Update game vote count
-    setUserVote(prevState => ({ ...prevState, [id]: type })); // Store the user's vote
+    if (response.ok) {
+      fetchGames(); // Refresh the game data after voting
+    }
+  };
+
+  const handleVoteClick = (gameId, type) => {
+    const currentVote = userVotes[gameId];
+    
+    if (currentVote === type) {
+      // If user clicks the same button again, remove the vote
+      handleVote(gameId, 'remove');
+    } else {
+      // If the user clicks the opposite button (like to dislike or vice versa), update the vote
+      handleVote(gameId, type);
+    }
   };
 
   useEffect(() => {
@@ -43,56 +40,49 @@ export default function GamesList() {
   }, []);
 
   return (
-    <div className="min-h-screen bg-gradient-to-r from-purple-500 via-indigo-600 to-blue-500 py-12">
-      <div className="max-w-6xl mx-auto text-center px-4">
-        <h1 className="text-5xl font-extrabold text-white mb-12 animate__animated animate__fadeIn">
-          Explore Top Games
-        </h1>
-
-        <div className="space-y-12">
-          {games.map((game) => (
-            <div
-              key={game._id}
-              className="bg-white p-6 rounded-lg shadow-lg transform transition-all duration-300 hover:scale-105 hover:shadow-2xl"
-            >
-              <h2 className="text-3xl font-semibold text-gray-800 mb-4">{game.title}</h2>
-              <p className="text-lg text-gray-600 mb-4">Genre: {game.genre}</p>
-              <p className="text-lg text-gray-600 mb-6">
-                <strong>Likes: </strong>{game.likes} | <strong>Dislikes: </strong>{game.dislikes}
-              </p>
-
-              <div className="flex justify-center space-x-6 mb-6">
-                <button
-                  onClick={() => handleVote(game._id, 'like')}
-                  className={`flex items-center px-6 py-3 bg-green-500 text-white font-semibold rounded-lg shadow-md transform transition-all hover:bg-green-600 hover:scale-105 ${userVote[game._id] === 'like' ? 'bg-green-700 cursor-not-allowed' : ''}`}
-                  disabled={userVote[game._id] === 'like'}
-                >
-                  <ThumbUpIcon className="h-6 w-6 mr-2" />
-                  Like
-                </button>
-                <button
-                  onClick={() => handleVote(game._id, 'dislike')}
-                  className={`flex items-center px-6 py-3 bg-red-500 text-white font-semibold rounded-lg shadow-md transform transition-all hover:bg-red-600 hover:scale-105 ${userVote[game._id] === 'dislike' ? 'bg-red-700 cursor-not-allowed' : ''}`}
-                  disabled={userVote[game._id] === 'dislike'}
-                >
-                  <ThumbDownIcon className="h-6 w-6 mr-2" />
-                  Dislike
-                </button>
-              </div>
-
-              <div className="flex justify-center space-x-4">
-                <a
-                  href={game.officialSite}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-lg text-blue-500 hover:underline transform transition-all hover:scale-105"
-                >
-                  Official Site
-                </a>
+    <div className="bg-gray-900 text-white min-h-screen py-12 px-4">
+      <h1 className="text-4xl font-bold text-center mb-8 text-green-400">Top Game Reviews</h1>
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        {games.map((game) => (
+          <div
+            key={game._id}
+            className="bg-gray-800 rounded-lg shadow-xl transform transition-transform duration-300 hover:scale-105 hover:bg-gray-700"
+          >
+            <img
+              src={game.image}
+              alt={game.title}
+              className="w-full h-64 object-cover rounded-t-lg"
+            />
+            <div className="p-6">
+              <h2 className="text-2xl font-semibold text-white hover:text-yellow-400 transition-colors duration-200">
+                {game.title}
+              </h2>
+              <p className="text-gray-300 mt-2">{game.genre}</p>
+              <p className="text-gray-400 mt-2">{game.description}</p>
+              <div className="flex justify-between items-center mt-4 space-x-8">
+                <div className="flex items-center space-x-4">
+                  <button
+                    onClick={() => handleVoteClick(game._id, 'like')}
+                    className={`text-lg ${userVotes[game._id] === 'like' ? 'text-green-500' : 'text-gray-300'} hover:text-green-400 transition-colors duration-300`}
+                  >
+                    <ThumbUpIcon className="w-7 h-7" />
+                    <span className="ml-2">{game.likes}</span>
+                  </button>
+                  <button
+                    onClick={() => handleVoteClick(game._id, 'dislike')}
+                    className={`text-lg ${userVotes[game._id] === 'dislike' ? 'text-red-500' : 'text-gray-300'} hover:text-red-400 transition-colors duration-300`}
+                  >
+                    <ThumbDownIcon className="w-7 h-7" />
+                    <span className="ml-2">{game.dislikes}</span>
+                  </button>
+                </div>
+                <div className="text-sm text-gray-400">
+                  <span>{new Date(game.releaseDate).toLocaleDateString()}</span>
+                </div>
               </div>
             </div>
-          ))}
-        </div>
+          </div>
+        ))}
       </div>
     </div>
   );

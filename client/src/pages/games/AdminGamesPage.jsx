@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 
 export default function AdminGamesPage() {
   const [games, setGames] = useState([]);
-  const [newGame, setNewGame] = useState({ title: '', genre: '', releaseDate: '', officialSite: '' });
+  const [newGame, setNewGame] = useState({ title: '', genre: '', releaseDate: '', officialSite: '', image: null });
   const [editGame, setEditGame] = useState(null);
   const [editGameData, setEditGameData] = useState({});
 
@@ -13,12 +13,19 @@ export default function AdminGamesPage() {
   };
 
   const handleCreateGame = async () => {
+    const formData = new FormData();
+    formData.append('title', newGame.title);
+    formData.append('genre', newGame.genre);
+    formData.append('releaseDate', newGame.releaseDate);
+    formData.append('officialSite', newGame.officialSite);
+    formData.append('image', newGame.image);
+
     await fetch('/api/game', {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(newGame),
+      body: formData,
     });
-    setNewGame({ title: '', genre: '', releaseDate: '', officialSite: '' });
+
+    setNewGame({ title: '', genre: '', releaseDate: '', officialSite: '', image: null });
     fetchGames();
   };
 
@@ -28,10 +35,18 @@ export default function AdminGamesPage() {
   };
 
   const handleUpdateGame = async (id) => {
+    const formData = new FormData();
+    formData.append('title', editGameData.title);
+    formData.append('genre', editGameData.genre);
+    formData.append('releaseDate', editGameData.releaseDate);
+    formData.append('officialSite', editGameData.officialSite);
+    if (editGameData.image) {
+      formData.append('image', editGameData.image); // Only append image if it's updated
+    }
+
     await fetch(`/api/game/${id}`, {
       method: 'PUT',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(editGameData),
+      body: formData,
     });
     setEditGame(null);
     fetchGames();
@@ -76,6 +91,12 @@ export default function AdminGamesPage() {
             value={newGame.officialSite}
             onChange={(e) => setNewGame({ ...newGame, officialSite: e.target.value })}
           />
+          <input
+            type="file"
+            className="w-full p-3 border border-gray-300 rounded-lg"
+            onChange={(e) => setNewGame({ ...newGame, image: e.target.files[0] })}
+          />
+          {newGame.image && <p>Selected Image: {newGame.image.name}</p>}
           <button
             onClick={handleCreateGame}
             className="w-full py-3 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition duration-300"
@@ -93,6 +114,7 @@ export default function AdminGamesPage() {
             <p className="text-gray-600">Genre: {game.genre}</p>
             <p className="text-gray-600">Release Date: {new Date(game.releaseDate).toLocaleDateString()}</p>
             <p className="text-gray-600">Official Site: <a href={game.officialSite} className="text-blue-500">{game.officialSite}</a></p>
+            {game.image && <img src={`http://localhost:5000/${game.image}`} alt={game.title} className="w-32 h-32 mt-4 rounded-md" />}
             <div className="mt-4 flex space-x-4">
               <button
                 onClick={() => setEditGame(game)}
@@ -139,6 +161,12 @@ export default function AdminGamesPage() {
                   defaultValue={game.officialSite}
                   onChange={(e) => setEditGameData({ ...editGameData, officialSite: e.target.value })}
                 />
+                <input
+                  type="file"
+                  className="w-full p-3 border border-gray-300 rounded-lg"
+                  onChange={(e) => setEditGameData({ ...editGameData, image: e.target.files[0] })}
+                />
+                {editGameData.image && <p>Selected Image: {editGameData.image.name}</p>}
                 <div className="flex space-x-4">
                   <button
                     onClick={() => handleUpdateGame(game._id)}

@@ -9,6 +9,7 @@ import gameRoutes from './routes/game.route.js';
 
 import cookieParser from 'cookie-parser';
 import path from 'path';
+import multer from 'multer';
 
 dotenv.config();
 
@@ -27,6 +28,17 @@ const app = express();
 
 app.use(express.json());
 app.use(cookieParser());
+app.use(express.urlencoded({ extended: true }));
+
+const storage = multer.diskStorage({
+  destination: (req, file, cb) => {
+    cb(null, 'uploads/'); // Specify where to store the files (in 'uploads' folder)
+  },
+  filename: (req, file, cb) => {
+    cb(null, Date.now() + path.extname(file.originalname)); // Set unique file name
+  },
+});
+const upload = multer({ storage });
 
 app.listen(3000, () => {
   console.log('Server is running on port 3000!');
@@ -36,10 +48,14 @@ app.use('/api/user', userRoutes);
 app.use('/api/auth', authRoutes);
 app.use('/api/post', postRoutes);
 app.use('/api/comment', commentRoutes);
-app.use('/api/game', gameRoutes);
+app.use('/api/game', upload.single('image'), gameRoutes);
+app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
+
 
 
 app.use(express.static(path.join(__dirname, '/client/dist')));
+
+
 
 app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, 'client', 'dist', 'index.html'));

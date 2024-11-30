@@ -65,23 +65,35 @@ export const deleteGame = async (req, res, next) => {
 };
 
 // Vote on a game (accessible to everyone)
-export const voteGame = async (req, res, next) => {
+export const vote = async (req, res, next) => {
+  const { id } = req.params; // Game ID
   const { type } = req.body; // 'like' or 'dislike'
+  const userId = req.user.id; // Get the user id from the logged-in user
 
   try {
-    const game = await Game.findById(req.params.id);
+    // Fetch the game by ID
+    const game = await Game.findById(id);
     if (!game) {
-      return next(errorHandler(404, 'Game not found'));
+      return res.status(404).json({ message: 'Game not found' });
     }
 
+    // Check if the user has already voted
+    const existingVote = game.votes.find((vote) => vote.userId.toString() === userId);
+    if (existingVote) {
+      return res.status(400).json({ message: 'You have already voted for this game' });
+    }
+
+    // Add the new vote
+    game.votes.push({ userId, type });
+
+    // Update the like/dislike counts based on the vote
     if (type === 'like') {
       game.likes += 1;
     } else if (type === 'dislike') {
       game.dislikes += 1;
-    } else {
-      return next(errorHandler(400, 'Invalid vote type'));
     }
 
+    // Save the updated game
     const updatedGame = await game.save();
     res.status(200).json(updatedGame);
   } catch (error) {

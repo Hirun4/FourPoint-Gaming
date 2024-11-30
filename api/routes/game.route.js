@@ -5,7 +5,8 @@ import {
   getGames,
   updateGame,
   deleteGame,
-  voteGame,
+  
+  vote,
 } from '../controllers/game.controller.js';
 
 const router = express.Router();
@@ -23,6 +24,6 @@ router.put('/:id', verifyToken, updateGame);
 router.delete('/:id', verifyToken, deleteGame);
 
 // Vote on a game (Public)
-router.put('/vote/:id', verifyToken, voteGame);
+router.put('/vote/:id', verifyToken, vote);
 
 export default router;

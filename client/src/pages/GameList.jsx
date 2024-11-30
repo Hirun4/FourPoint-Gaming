@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import { ThumbUpIcon, ThumbDownIcon } from '@heroicons/react/outline';
+import { ThumbUpIcon, ThumbDownIcon } from '@heroicons/react/outline'; // Heroicons v2
 
 export default function GamesList() {
   const [games, setGames] = useState([]);
+  const [userVote, setUserVote] = useState({}); // Track user's vote on each game
 
   const fetchGames = async () => {
     const response = await fetch('/api/game');
@@ -10,13 +11,31 @@ export default function GamesList() {
     setGames(data);
   };
 
+  const fetchUserVote = async (gameId) => {
+    // Fetch user's vote status for the game
+    const response = await fetch(`/api/game/vote/status/${gameId}`, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    });
+    const data = await response.json();
+    setUserVote(prevState => ({ ...prevState, [gameId]: data.type }));
+  };
+
   const handleVote = async (id, type) => {
-    await fetch(`/api/game/vote/${id}`, {
+    // If the user has already voted, do not allow further voting
+    if (userVote[id]) return;
+
+    const response = await fetch(`/api/game/vote/${id}`, {
       method: 'PUT',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ type }),
     });
-    fetchGames();
+
+    const data = await response.json();
+    setGames(games.map(game => (game._id === id ? data : game))); // Update game vote count
+    setUserVote(prevState => ({ ...prevState, [id]: type })); // Store the user's vote
   };
 
   useEffect(() => {
@@ -45,14 +64,16 @@ export default function GamesList() {
               <div className="flex justify-center space-x-6 mb-6">
                 <button
                   onClick={() => handleVote(game._id, 'like')}
-                  className="flex items-center px-6 py-3 bg-green-500 text-white font-semibold rounded-lg shadow-md transform transition-all hover:bg-green-600 hover:scale-105"
+                  className={`flex items-center px-6 py-3 bg-green-500 text-white font-semibold rounded-lg shadow-md transform transition-all hover:bg-green-600 hover:scale-105 ${userVote[game._id] === 'like' ? 'bg-green-700 cursor-not-allowed' : ''}`}
+                  disabled={userVote[game._id] === 'like'}
                 >
                   <ThumbUpIcon className="h-6 w-6 mr-2" />
                   Like
                 </button>
                 <button
                   onClick={() => handleVote(game._id, 'dislike')}
-                  className="flex items-center px-6 py-3 bg-red-500 text-white font-semibold rounded-lg shadow-md transform transition-all hover:bg-red-600 hover:scale-105"
+                  className={`flex items-center px-6 py-3 bg-red-500 text-white font-semibold rounded-lg shadow-md transform transition-all hover:bg-red-600 hover:scale-105 ${userVote[game._id] === 'dislike' ? 'bg-red-700 cursor-not-allowed' : ''}`}
+                  disabled={userVote[game._id] === 'dislike'}
                 >
                   <ThumbDownIcon className="h-6 w-6 mr-2" />
                   Dislike

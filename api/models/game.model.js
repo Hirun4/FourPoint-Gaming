@@ -1,7 +1,7 @@
 import mongoose from "mongoose";
 
 const gameSchema = new mongoose.Schema({
-  title: { type: String, required: true },
+  title: { type: String, required: true,unique: true },
   genre: { type: String, required: true },
   popularity: { type: Number, default: 0 },
   releaseDate: { type: Date },
@@ -14,7 +14,7 @@ const gameSchema = new mongoose.Schema({
       type: { type: String, enum: ['like', 'dislike'], required: true }
     }
   ],
-  userId: { type: String, required: true },
+  userId: { type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true },
 }, { timestamps: true });
 
 

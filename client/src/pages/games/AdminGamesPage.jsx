@@ -18,7 +18,8 @@ export default function AdminGamesPage() {
     setGames(data);
   };
 
-  const handleCreateGame = async () => {
+  const handleCreateGame = async (e) => {
+    e.preventDefault();
     const formData = new FormData();
     formData.append("title", newGame.title);
     formData.append("genre", newGame.genre);
@@ -26,11 +27,12 @@ export default function AdminGamesPage() {
     formData.append("officialSite", newGame.officialSite);
     formData.append("image", newGame.image);
 
-    await fetch("/api/game", {
+    const response = await fetch("/api/game", {
       method: "POST",
       body: formData,
     });
 
+    if(response.ok){
     setNewGame({
       title: "",
       genre: "",
@@ -39,7 +41,10 @@ export default function AdminGamesPage() {
       image: null,
     });
     fetchGames();
-  };
+  }else{
+    console.error('failed to create game')
+  }
+}
 
   const handleDeleteGame = async (id) => {
     await fetch(`/api/game/${id}`, { method: "DELETE" });
@@ -147,7 +152,11 @@ export default function AdminGamesPage() {
             </p>
             {game.image && (
               <img
-                 src={game.image ? `http://localhost:3000${game.image}` : '/default-image.jpg'}
+                src={
+                  game.image
+                    ? `http://localhost:3000${game.image}`
+                    : "/default-image.jpg"
+                }
                 alt={game.title}
                 className="w-45 h-32 mt-4 rounded-md"
               />

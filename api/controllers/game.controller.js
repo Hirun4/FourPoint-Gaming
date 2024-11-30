@@ -24,7 +24,7 @@ export const createGame = async (req, res, next) => {
       userId: req.user.id, // Assume user ID is in req.user.id (from authentication)
     });
     const savedGame = await newGame.save();
-    console.log('Game Created:', savedGame);
+    // console.log('Game Created:', savedGame);s
     res.status(201).json(savedGame);
   } catch (error) {
     next(error);

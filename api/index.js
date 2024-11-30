@@ -37,7 +37,7 @@ app.use('/api/auth', authRoutes);
 app.use('/api/post', postRoutes);
 app.use('/api/comment', commentRoutes);
 app.use('/api/game', gameRoutes);
-app.use('/api/user', userRoutes);
+
 
 app.use(express.static(path.join(__dirname, '/client/dist')));
 

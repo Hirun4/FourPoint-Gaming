@@ -1,17 +1,28 @@
 import express from 'express';
-import { likeGame, dislikeGame, removeLike, removeDislike } from  '../controllers/game.controller.js';
+import { verifyToken } from '../utils/verifyUser.js';
+import {
+  createGame,
+  getGames,
+  updateGame,
+  deleteGame,
+  voteGame,
+} from '../controllers/game.controller.js';
+
 const router = express.Router();
 
-// Like a game
-router.post('/:id/like', likeGame);
+// Create a game (Admin only)
+router.post('/', verifyToken, createGame);
 
-// Remove a like
-router.delete('/:id/like', removeLike);
+// Get all games (Public)
+router.get('/', getGames);
 
-// Dislike a game
-router.post('/:id/dislike', dislikeGame);
+// Update a game (Admin only)
+router.put('/:id', verifyToken, updateGame);
 
-// Remove a dislike
-router.delete('/:id/dislike', removeDislike);
+// Delete a game (Admin only)
+router.delete('/:id', verifyToken, deleteGame);
 
-export default router; 
+// Vote on a game (Public)
+router.put('/vote/:id', verifyToken, voteGame);
+
+export default router;

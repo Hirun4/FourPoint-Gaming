@@ -28,7 +28,7 @@ export const createGame = async (req, res, next) => {
     console.log("Authenticated user ID:", req.user.id);
     console.log('Game object before saving:', newGame);
     const savedGame = await newGame.save();
-    // console.log('Game Created:', savedGame);
+    console.log('Game Created:', savedGame);
     res.status(201).json(savedGame);
   } catch (error) {
     next(error);

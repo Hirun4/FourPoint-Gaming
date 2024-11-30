@@ -60,7 +60,7 @@ export const updateGame = async (req, res, next) => {
   try {
     const updatedGame = await Game.findByIdAndUpdate(
       req.params.id,
-      { ...req.body, image: imagePath }, // Update the image as well
+      { ...req.body, image: imagePath }, 
       { new: true }
     );
     if (!updatedGame) {
@@ -89,7 +89,7 @@ export const deleteGame = async (req, res, next) => {
   }
 };
 
-// Vote on a game (accessible to everyone)
+
 export const vote = async (req, res, next) => {
   const { id } = req.params; // Game ID
   const { type } = req.body; // 'like' or 'dislike'

@@ -41,7 +41,7 @@ export default function GamesList() {
 
   return (
     <div className="bg-gray-900 text-white min-h-screen py-12 px-4">
-      <h1 className="text-4xl font-bold text-center mb-8 text-green-400">Top Game Reviews</h1>
+      <h1 className="text-5xl font-extrabold text-center mb-12 animate-glow">Top Game Reviews</h1>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
         {games.map((game) => (
           <div
@@ -50,7 +50,7 @@ export default function GamesList() {
           >
             {/* Render the image */}
             <img
-              src={game.image ? `${process.env.REACT_APP_API_URL || ''}${game.image}` : '/default-image.jpg'}  // Ensure image is loaded correctly
+              src={game.image ? `http://localhost:3000${game.image}` : '/default-image.jpg'}  // Ensure image is loaded correctly
               alt={game.title}
               className="w-full h-64 object-cover rounded-t-lg"
             />

@@ -147,9 +147,9 @@ export default function AdminGamesPage() {
             </p>
             {game.image && (
               <img
-                src={`http://localhost:3000/${game.image}`}
+                 src={game.image ? `http://localhost:3000${game.image}` : '/default-image.jpg'}
                 alt={game.title}
-                className="w-32 h-32 mt-4 rounded-md"
+                className="w-45 h-32 mt-4 rounded-md"
               />
             )}
             <div className="mt-4 flex space-x-4">

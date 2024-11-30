@@ -16,6 +16,8 @@ export const createGame = async (req, res, next) => {
   if (req.file) {
     imagePath = `/uploads/${req.file.filename}`; // Save the uploaded image path
   }
+  console.log('Received Game Data:', req.body);
+  console.log('Received File:', req.file);
 
   try {
     const newGame = new Game({
@@ -23,8 +25,10 @@ export const createGame = async (req, res, next) => {
       image: imagePath, // Include the image path in the new game entry
       userId: req.user.id, // Assume user ID is in req.user.id (from authentication)
     });
+    console.log("Authenticated user ID:", req.user.id);
+    console.log('Game object before saving:', newGame);
     const savedGame = await newGame.save();
-    // console.log('Game Created:', savedGame);s
+    // console.log('Game Created:', savedGame);
     res.status(201).json(savedGame);
   } catch (error) {
     next(error);

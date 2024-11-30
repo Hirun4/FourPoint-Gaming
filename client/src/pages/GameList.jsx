@@ -48,8 +48,9 @@ export default function GamesList() {
             key={game._id}
             className="bg-gray-800 rounded-lg shadow-xl transform transition-transform duration-300 hover:scale-105 hover:bg-gray-700"
           >
+            {/* Render the image */}
             <img
-              src={game.image}
+              src={game.image ? `${process.env.REACT_APP_API_URL || ''}${game.image}` : '/default-image.jpg'}  // Ensure image is loaded correctly
               alt={game.title}
               className="w-full h-64 object-cover rounded-t-lg"
             />

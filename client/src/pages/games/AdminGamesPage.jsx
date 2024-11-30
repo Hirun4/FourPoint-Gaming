@@ -1,3 +1,5 @@
+
+
 import React, { useState, useEffect } from 'react';
 
 export default function AdminGamesPage() {
@@ -114,7 +116,7 @@ export default function AdminGamesPage() {
             <p className="text-gray-600">Genre: {game.genre}</p>
             <p className="text-gray-600">Release Date: {new Date(game.releaseDate).toLocaleDateString()}</p>
             <p className="text-gray-600">Official Site: <a href={game.officialSite} className="text-blue-500">{game.officialSite}</a></p>
-            {game.image && <img src={`http://localhost:5000/${game.image}`} alt={game.title} className="w-32 h-32 mt-4 rounded-md" />}
+            {game.image && <img src={`http://localhost:3000/${game.image}`} alt={game.title} className="w-32 h-32 mt-4 rounded-md" />}
             <div className="mt-4 flex space-x-4">
               <button
                 onClick={() => setEditGame(game)}

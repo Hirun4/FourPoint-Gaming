@@ -5,7 +5,7 @@ const gameSchema = new mongoose.Schema({
   genre: { type: String, required: true },
   popularity: { type: Number, default: 0 },
   releaseDate: { type: Date },
-  image: { type: String },
+  image: { type: String, default: null },
   likes: { type: Number, default: 0 },
   dislikes: { type: Number, default: 0 },
   votes: [

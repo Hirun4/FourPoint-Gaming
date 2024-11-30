@@ -46,8 +46,18 @@ export const updateGame = async (req, res, next) => {
     return next(errorHandler(403, 'Only admins can update a game'));
   }
 
+  // If there's a new image file, update the image path
+  let imagePath = req.body.image; // Keep the current image unless there's a new one
+  if (req.file) {
+    imagePath = `/uploads/${req.file.filename}`; // Update the image path with the new file
+  }
+
   try {
-    const updatedGame = await Game.findByIdAndUpdate(req.params.id, req.body, { new: true });
+    const updatedGame = await Game.findByIdAndUpdate(
+      req.params.id,
+      { ...req.body, image: imagePath }, // Update the image as well
+      { new: true }
+    );
     if (!updatedGame) {
       return next(errorHandler(404, 'Game not found'));
     }

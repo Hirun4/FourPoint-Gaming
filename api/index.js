@@ -11,6 +11,7 @@ import cookieParser from 'cookie-parser';
 import path from 'path';
 import multer from 'multer';
 import cors from 'cors';
+import Game from './models/game.model.js';
 
 dotenv.config();
 

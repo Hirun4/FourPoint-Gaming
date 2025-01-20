@@ -2,7 +2,7 @@ import Game from '../models/game.model.js';
 import { errorHandler } from '../utils/error.js';
 
 
-export const createGame = async (req, res, next) => {
+export const createGame = async (req, res, next) => {  
   if (!req.user.isAdmin) {
     return next(errorHandler(403, 'Only admins can create a game'));
   }
@@ -25,12 +25,16 @@ export const createGame = async (req, res, next) => {
       image: imagePath, 
       userId: req.user.id, 
     });
+    newGame.id = newGame._id
     console.log("Authenticated user ID:", req.user.id);
     console.log('Game object before saving:', newGame);
+    console.log(newGame.id);
+    
     const savedGame = await newGame.save();
     console.log('Game Created:', savedGame);
     res.status(201).json(savedGame);
   } catch (error) {
+    console.log(error);
     next(error);
   }
 };
